@@ -3,9 +3,7 @@
     <AppHeader />
 
     <main>
-      <AppHero />
-      <AppFeatures />
-      <AppNewsletter />
+      <NuxtPage />
     </main>
 
     <AppFooter />
