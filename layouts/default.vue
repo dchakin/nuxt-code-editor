@@ -3,9 +3,18 @@
     <AppHeader />
 
     <main>
-      <NuxtPage />
+      <slot />
     </main>
 
     <AppFooter />
   </div>
 </template>
+
+
+<script lang="ts" setup>
+
+</script>
+
+<style>
+
+</style>
