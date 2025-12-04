@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/playlists/prettier/lessons/getting-started-with-prettier">
+  <NuxtLink :to="`/playlists/${playlistSlug}/lessons/getting-started-with-prettier`">
     <article
       class="flex h-full flex-col rounded-md border border-gray-200 p-4 hover:border-indigo-600 sm:rounded-xl sm:p-6 dark:border-black dark:bg-gray-700 dark:hover:border-indigo-400"
     >
@@ -29,13 +29,15 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
   playlist: {
     title: string
     description: string
     tags: string[]
   }
 }>()
+
+const playlistSlug = props.playlist.title.toLowerCase().replaceAll(' ', '-')
 </script>
 
 <style></style>
