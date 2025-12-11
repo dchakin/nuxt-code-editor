@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-y-4 md:col-span-1 lg:gap-y-6">
     <AppFormField
-      v-model="playlistStore.searchQuery"
+      v-model="playlistsStore.searchQuery"
       type="search"
       placeholder="Playlist Title"
       id="search"
@@ -16,7 +16,23 @@
 </template>
 
 <script lang="ts" setup>
-const playlistStore = usePlaylistsStore()
+const playlistsStore = usePlaylistsStore()
+const route = useRoute()
+const router = useRouter()
+
+playlistsStore.searchQuery = route.query.search
+  ? (route.query.search as string).trim()
+  : ''
+
+watch(
+  () => playlistsStore.searchQuery,
+  (searchQuery) => {
+    router.replace({
+      query: searchQuery ? { search: searchQuery } : {},
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <style></style>
