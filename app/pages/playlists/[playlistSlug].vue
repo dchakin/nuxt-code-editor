@@ -18,10 +18,7 @@ const playlist = usePlaylistsStore().getPlaylistBySlug(
 )
 
 if (!playlist) {
-  throw createError({
-    statusCode: 404,
-    message: 'Playlist not found',
-  })
+  throw404('Playlist not found')
 }
 </script>
 
