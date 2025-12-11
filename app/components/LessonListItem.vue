@@ -13,11 +13,7 @@
 
 <script lang="ts" setup>
 const props = defineProps<{
-  lesson: {
-    number: number
-    title: string
-    duration: string
-  }
+  lesson: NumberedLesson
 }>()
 
 const playlistSlug = useRoute().params.playlistSlug
