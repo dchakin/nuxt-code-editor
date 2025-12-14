@@ -1,8 +1,11 @@
 <template>
-  <form class="flex flex-col gap-y-4 sm:gap-y-6">
-    <AppFormField type="email" id="email">Email</AppFormField>
-    <AppFormField type="password" id="password">Password</AppFormField>
-    <AppFormField type="password" id="passwordConfirmation">
+  <form
+    @submit.prevent="handleRegister"
+    class="flex flex-col gap-y-4 sm:gap-y-6"
+  >
+    <AppFormField v-model.trim="email" type="email" id="email">Email</AppFormField>
+    <AppFormField v-model="password" type="password" id="password">Password</AppFormField>
+    <AppFormField v-model="passwordConfirmation" type="password" id="passwordConfirmation">
       Password Confirmation
     </AppFormField>
 
@@ -24,6 +27,30 @@
 definePageMeta({
   layout: 'auth',
 })
+
+const email = ref('')
+const password = ref('')
+const passwordConfirmation = ref('')
+
+const { loggedIn, fetch: fetchUserSession } = useUserSession()
+
+if (loggedIn.value) {
+  navigateTo('/playlists')
+}
+
+async function handleRegister() {
+  await $fetch('/api/register', {
+    method: 'POST',
+    body: {
+      email: email.value,
+      password: password.value,
+    },
+  })
+
+  await fetchUserSession()
+
+  await navigateTo('/playlists')
+}
 </script>
 
 <style></style>

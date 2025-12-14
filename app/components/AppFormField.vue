@@ -13,7 +13,6 @@ defineOptions({
 })
 
 defineProps<{
-  type: string
   id: string
 }>()
 </script>
