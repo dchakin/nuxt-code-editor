@@ -4,6 +4,7 @@
       <slot />
     </AppLabel>
     <AppInput :id="id" v-bind="$attrs" />
+    <p v-if="error" class="text-sm text-red-600 dark:text-red-400">{{ error }}</p>
   </div>
 </template>
 
@@ -13,7 +14,8 @@ defineOptions({
 })
 
 defineProps<{
-  id: string
+  id: string,
+  error?: string,
 }>()
 </script>
 
